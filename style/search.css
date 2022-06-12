@@ -1,0 +1,123 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+
+
+
+.searchContainer{
+  width: 100%;
+  background: #fff;
+  border-radius: 6px;
+  margin-top: 30px;
+  padding: 20px 60px 30px 40px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  height: 600px;
+  overflow-y: scroll;
+}
+
+
+.searchContainer::-webkit-scrollbar {
+    width: 6px;
+  }
+   
+.searchContainer::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+   
+.searchContainer::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+  }
+
+.searchContainer::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+
+.searchContainer form{
+    width: 100%;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+.searchContainer form input{
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 16px;    
+    padding: 8px 10px;
+}
+
+.searchContainer form i{
+    padding-left: 10px;
+}
+
+.productList{
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 1.5em;
+  padding: 2em 0;
+}
+
+.productSearch{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding-top: 20px;
+    margin: 10px;
+    width: 100%;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+.productSearch:hover{
+    background-color: #eee;
+}
+
+.productSearch img{
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.productSearch .pDetails{
+    padding-left: 15px;
+}
+
+.productSearch .pDetails h2{
+    font-size: 20px;
+    color: #1d1d1d;
+}
+
+.productSearch .pDetails h3{
+    font-size: 13px;
+}
+
+@media (max-width: 768px) {
+    .searchContainer{
+        width: 100%
+    }
+    .searchContainer2{
+        width: calc(100% / 2 - 10px);
+    }
+  }
+  @media (max-width: 600px) {
+    .searchContainer{
+      /* margin: 20px 0 10px 0; */
+      width: 100%;
+      
+    }
+    .searchContainer2{
+        /* margin: 20px 0 10px 0; */
+        width: 100%;
+      }
+  }

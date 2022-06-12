@@ -1,0 +1,1815 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>Oasis</title>
+    <link rel="stylesheet" href="/style/intro.css" />
+    <link rel="stylesheet" href="/style/card.css" />
+    <link rel="stylesheet" href="/style/popup.css" />
+    <link rel="stylesheet" href="/style/message.css" />
+    <link rel="stylesheet" href="/style/sample.css" />
+    <link rel="stylesheet" href="/style/toast.css" />
+    <link rel="stylesheet" href="/style/notif.css" />
+    <link rel="stylesheet" href="/style/settings.css" />
+    <link rel="stylesheet" href="/style/search.css" />
+    <link rel="icon" type="image/x-icon" href="/image/oasislogo.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
+      integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <!-- Preloader -->
+
+    <!-- alert box logout -->
+
+    <div class="toast">
+      <div class="toast-content">
+        <i id="iconToast" class="fas fa-solid fa-check check"></i>
+
+        <div class="message">
+          <span class="text text-1" id="firstMessage">Success</span>
+          <span class="text text-2" id="secondMessage"
+            >Your changes has been saved</span
+          >
+        </div>
+      </div>
+      <i class="fa-solid fa-xmark close"></i>
+
+      <div id="toastBox" class="progress"></div>
+    </div>
+    <input type="checkbox" id="menu-toggle" />
+    <div class="overlay">
+      <label for="menu-toggle"> </label>
+    </div>
+
+    <div class="sidebar">
+      <div class="sidebar-container">
+        <div class="brand">
+          <h3>
+            <span class="fa-brands fa-staylinked"></span>
+            Oasis
+          </h3>
+        </div>
+
+        <!-- Yung nakadisplay sa taas na may picture -->
+        <div class="sidebar-avartar">
+          <div>
+            <img id="profilePic" alt="" />
+          </div>
+          <div class="avartar-info">
+            <div class="avartar-text">
+              <h4 id="userText"></h4>
+            </div>
+          </div>
+        </div>
+
+        <!-- Yung mga pamimilian sa gilid -->
+        <div class="sidebar-menu">
+          <ul>
+            <li>
+              <a href="#" class="active" onclick="back()">
+                <span class="fa-solid fa-circle-half-stroke"></span>
+                <span>Dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a href="#try1" onclick="gone()">
+                <span class="fa-solid fa-sliders"></span>
+                <span>Adjustments</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" onclick="goMoistureGuide()">
+                <span class="fa-solid fa-seedling"></span>
+                <span>Moisture Guide</span>
+              </a>
+            </li>
+            <li>
+              <a href="#messageSection" onclick="goMessage()">
+                <span class="fa-solid fa-message"></span>
+                <span>Communication</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="#settingsSection" onclick="goSettings()">
+                <span class="fa-solid fa-gear"></span>
+                <span>Settings</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" onclick="logout()">
+                <span class="fa-solid fa-right-from-bracket"></span>
+                <span>Logout</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="fa-solid fa-moon"></span>
+                <span>Dark Mode</span>
+              </a>
+              <div class="mode-toggle">
+                <span class="switch"></span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Yung may parang icon na malaki -->
+        <div class="sidebar-card">
+          <div class="side-card-icon">
+            <span class="fa-solid fa-droplet"></span>
+          </div>
+          <div>
+            <h4>Save Water</h4>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil,
+              eligendi?
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <!-- Yung laging nakadisplay sa taas mo na di nawawala -->
+      <header>
+        <div class="header-title-wrapper">
+          <label for="menu-toggle">
+            <span class="fa-solid fa-bars" id="hamburger"></span>
+          </label>
+          <div class="header-title">
+            <h1>Oasis</h1>
+            <p>
+              Display analytics about your Watering System
+              <span class="fa-solid fa-chart-line"></span>
+            </p>
+          </div>
+        </div>
+        <div class="header-action">
+          <button class="btn btn-main" onclick="toggleNotifi()">
+            <span class="notifOnly fa-solid fa-bell"></span>
+            <span class="badge" id="notifCount"></span>
+            Notifications
+          </button>
+        </div>
+        <div class="notifi-box" id="box">
+          <div class="notifi-item" id="boxItemLoad">
+            <i class="fa-solid fa-comment-sms"></i>
+            <div></div>
+            <div class="text">
+              <h4 id="primaryMessageLoad">Your Load Expiring!</h4>
+              <p id="instructionsLoad">Time of</p>
+              <p id="elapsedLoad">asd</p>
+            </div>
+          </div>
+
+          <div class="notifi-item" id="boxItemCritical">
+            <i class="fa-solid fa-droplet-slash"></i>
+            <div></div>
+            <div class="text">
+              <h4 id="primaryMessageCritical">Critical Water Level!</h4>
+              <p id="instructionsCritical">Refill container immediately</p>
+              <p id="elapsedCritical">just now</p>
+            </div>
+          </div>
+
+          <div class="notifi-item" id="boxItemGood">
+            <i class="fa-solid fa-droplet"></i>
+            <div></div>
+            <div class="text">
+              <h4 id="primaryMessageGood">Good Water Level</h4>
+              <p id="instructionsGood">Thank you for refilling</p>
+              <p id="elapsedGood">asd</p>
+            </div>
+          </div>
+
+          <div class="notifi-item" id="boxItemWeekly">
+            <i class="fa-solid fa-list-check"></i>
+            <div></div>
+            <div class="text">
+              <h4 id="primaryMessageWeekly">asd</h4>
+              <p id="instructionsWeekly">con</p>
+              <p id="elapsedWeekly">asd</p>
+            </div>
+          </div>
+
+          <div class="notifi-item" id="boxItemWatering1">
+            <i class="fa-solid fa-thumbs-up"></i>
+            <div></div>
+            <div class="text">
+              <h4 id="primaryMessageWatering1">Watering Completed</h4>
+              <p id="instructionsWatering1">Plant 1 is well</p>
+              <p id="elapsedWatering1">asd</p>
+            </div>
+          </div>
+
+          <div class="notifi-item" id="boxItemWatering2">
+            <i class="fa-solid fa-thumbs-up"></i>
+            <div></div>
+            <div class="text">
+              <h4 id="primaryMessageWatering2">Watering Completed</h4>
+              <p id="instructionsWatering2">Plant 2 is well</p>
+              <p id="elapsedWatering2">asd</p>
+            </div>
+          </div>
+        </div>
+      </header>
+      <main>
+        <!-- Dashboard Section -->
+        <section id="overview">
+          <h3 class="section-head" id="sectionHead">Overview</h3>
+          <div class="analytics">
+            <div onclick="pickCard()" class="analytic" id="moisture1Click">
+              <div class="analytic-icon">
+                <span class="fa-solid fa-hand-holding-droplet"></span>
+              </div>
+              <div class="analytic-info">
+                <h4 id="sensorName1">Layer 1 Soil Moisture</h4>
+                <h1 id="sensor1"></h1>
+              </div>
+            </div>
+
+            <div onclick="pickCard()" class="analytic" id="moisture2Click">
+              <div class="analytic-icon">
+                <span class="fa-solid fa-hand-holding-droplet"></span>
+              </div>
+              <div class="analytic-info">
+                <h4 id="sensorName2">Layer 2 Soil Moisture</h4>
+                <h1 id="sensor2">
+                  <small id="small2" class="text-danger"></small>
+                </h1>
+              </div>
+            </div>
+
+            <div onclick="pickCard()" class="analytic" id="waterClick">
+              <div class="analytic-icon">
+                <span class="fa-solid fa-droplet"></span>
+              </div>
+              <div class="analytic-info">
+                <h4 id="waterLevelName">Tank Water Level</h4>
+                <h1 id="waterLevel">
+                  <small class="text-success"></small>
+                </h1>
+              </div>
+            </div>
+
+            <div onclick="pickCard()" class="analytic" id="signalClick">
+              <div class="analytic-icon">
+                <span class="fa-solid fa-signal"></span>
+              </div>
+              <div class="analytic-info">
+                <h4 id="signalName">Signal Strength</h4>
+                <h1 id="signal">High</h1>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="try1">
+          <div class="block-grid">
+            <div class="revenue-card">
+              <h3 class="section-head">Plant Profile</h3>
+              <div class="rev-content">
+                <img id="plantProfilePicture" src="/ima" alt="" />
+                <div class="rev-info">
+                  <h3 id="plantProfileName"></h3>
+                  <h1 id="plantProfileDescription"></h1>
+                </div>
+                <div class="rev-sum">
+                  <h4 id="plantProfileSoilName">Soil Type</h4>
+                  <h2 id="plantProfileSoil">asdas</h2>
+                </div>
+              </div>
+            </div>
+            <div class="graph-card">
+              <h3 class="section-head">Weekly Water Usage</h3>
+              <div class="graph-content">
+                <div class="graph-head">
+                  <div class="icons-wrapper">
+                    <div class="icon">
+                      <span class="fa-solid fa-eye text-main"></span>
+                    </div>
+                    <div class="icon">
+                      <span class="fa-solid fa-clock text-success"></span>
+                    </div>
+                  </div>
+                  <div class="graph-select"></div>
+                </div>
+                <div class="graph-board">
+                  <canvas id="revenueChart" width="90%" height="50px"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Messaging Section -->
+        <section id="messageSection">
+          <div class="containerMessage">
+            <div class="title">Message Settings</div>
+            <div class="content">
+              <form action="#">
+                <div class="user-details">
+                  <div class="input-box">
+                    <span class="details">WiFi Connectivity</span>
+                    <input
+                      type="text"
+                      readonly
+                      value="Connected"
+                      pattern=".{1,}"
+                      id="signalStrength"
+                    />
+                  </div>
+                  <div class="input-box">
+                    <span class="details">Recepient's Mobile Number</span>
+                    <input
+                      type="tel"
+                      placeholder="Enter a valid number"
+                      required
+                      pattern="^(09|\+639)\d{9}$"
+                      title="Enter a valid number"
+                      id="mobileNumber"
+                    />
+                  </div>
+                  <div class="input-box">
+                    <span class="details">Sim Card Load Promo</span>
+                    <select
+                      aria-label="loadPromo"
+                      name="loadPromo"
+                      id="loadPromo"
+                      onclick="load()"
+                    >
+                      <option value="None">Choose 1</option>
+                      <option value="Regular Load">Regular Load</option>
+                      <option value="Unlimited Text">Unlimited Text</option>
+                      <option value="Unlimited Call">Unlimited Call</option>
+                      <option value="Unlimited Call and Text">
+                        Unlimited Call and Text
+                      </option>
+                      <option value="Limited Number of Text">
+                        Limited Number of Text
+                      </option>
+                    </select>
+                  </div>
+                  <div class="input-box">
+                    <span class="details">Date of expiration</span>
+                    <input type="date" required id="expirationDate" />
+                  </div>
+                  <div id="limitedText" class="input-box">
+                    <span class="details">Number of Messages</span>
+                    <input
+                      type="number"
+                      placeholder="Enter number of messages"
+                      name="limited"
+                      id="numberMessage"
+                    />
+                  </div>
+                </div>
+                <div class="gender-details">
+                  <input
+                    type="radio"
+                    name="communicate"
+                    id="dot-1"
+                    value="Send Text Message"
+                  />
+                  <input
+                    type="radio"
+                    name="communicate"
+                    id="dot-2"
+                    value="Call Me"
+                  />
+                  <input
+                    type="radio"
+                    name="communicate"
+                    id="dot-3"
+                    value="Both"
+                  />
+                  <span class="gender-title">Type of Notification</span>
+                  <div class="category">
+                    <label for="dot-1">
+                      <span class="dot one"></span>
+                      <span class="gender">Send text message</span>
+                    </label>
+                    <label for="dot-2">
+                      <span class="dot two"></span>
+                      <span class="gender">Call me</span>
+                    </label>
+                    <label for="dot-3">
+                      <span class="dot three"></span>
+                      <span class="gender">Both</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="button">
+                  <input
+                    type="submit"
+                    value="Save"
+                    onclick="saveMessageData()"
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- Soil Moisture Sensor -->
+
+        <section id="palit">
+          <div class="container">
+            <input type="radio" name="dot" id="one" />
+            <input type="radio" name="dot" id="two" />
+            <div class="main-card">
+              <div class="cards">
+                <div class="card">
+                  <div class="content">
+                    <div class="img">
+                      <img id="pic1" src="/image/leaves.jpg" alt="" />
+                    </div>
+                    <div class="details">
+                      <div class="name" id="sensorNameEdit1">
+                        Soil Moisture 1
+                      </div>
+                      <div class="job" id="plantName1">Plant Name</div>
+                    </div>
+                    <div>
+                      <small id="sensorDescription1"></small>
+                    </div>
+                    <div class="media-icons">
+                      <a href="#try1" onclick="popup()" id="editPopup1"
+                        ><i class="fa-solid fa-list-check"></i
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="content">
+                    <div class="img">
+                      <img id="pic2" src="/image/leaves.jpg" alt="" />
+                    </div>
+                    <div class="details">
+                      <div class="name" id="sensorNameEdit2">
+                        Soil Moisture 2
+                      </div>
+                      <div class="job" id="plantName2">Plant Name</div>
+                    </div>
+                    <div>
+                      <small id="sensorDescription2"></small>
+                    </div>
+                    <div class="media-icons">
+                      <a href="#try1" onclick="popup()" id="editPopup2"
+                        ><i class="fa-solid fa-list-check"></i
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="content">
+                    <div class="img">
+                      <img src="/image/leaves.jpg" alt="" />
+                    </div>
+                    <div class="details">
+                      <div class="name">Reserved Slot</div>
+                      <div class="job">Plant Name</div>
+                    </div>
+                    <div class="media-icons">
+                      <a href="#try1" id="editPopup3"
+                        ><i class="fa-solid fa-list-check"></i
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="cards">
+                <div class="card">
+                  <div class="content">
+                    <div class="img">
+                      <!---<img src="images/img4.jpg" alt="">--->
+                    </div>
+                    <div class="details">
+                      <div class="name">Appolo Reef</div>
+                      <div class="job">Web Designer</div>
+                    </div>
+                    <div class="media-icons">
+                      <a href="#" onclick="popup()"
+                        ><i class="fa-solid fa-list-check"></i
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="content">
+                    <div class="img">
+                      <!--<img src="images/img5.jpg" alt="">---->
+                    </div>
+                    <div class="details">
+                      <div class="name">Adrina Calvo</div>
+                      <div class="job">UI Designer</div>
+                    </div>
+                    <div class="media-icons">
+                      <a href="#" onclick="popup()"
+                        ><i class="fa-solid fa-list-check"></i
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="content">
+                    <div class="img">
+                      <!--<img src="images/img6.jpeg" alt="">--->
+                    </div>
+                    <div class="details">
+                      <div class="name">Nicole Lewis</div>
+                      <div class="job">Web Devloper</div>
+                    </div>
+                    <div class="media-icons">
+                      <a href="#" onclick="popup()"
+                        ><i class="fa-solid fa-list-check"></i
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Moisture Guide Section -->
+
+        <section id="moistureGuideSection">
+          <div><h1>Choose your soil type</h1></div>
+          <div class="container">
+            <input type="radio" name="dot" id="oneGuide" />
+            <input type="radio" name="dot" id="twoGuide" />
+            <div class="main-card">
+              <div class="cards">
+                <div class="card">
+                  <div class="content">
+                    <div class="img">
+                      <img src="/image/clay.jpg" alt="" />
+                    </div>
+                    <div class="details">
+                      <div class="name">Soil Type</div>
+                      <div class="job">Fine (Clay)</div>
+                    </div>
+                    <div>
+                      <small></small>
+                    </div>
+                    <div class="media-icons">
+                      <a href="#" class="popup-btn"
+                        ><i class="fa-solid fa-list-check"></i
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="content">
+                    <div class="img">
+                      <img src="/image/loamy.jpg" alt="" />
+                    </div>
+                    <div class="details">
+                      <div class="name">Soil Type</div>
+                      <div class="job">Medium (Loamy)</div>
+                    </div>
+                    <div>
+                      <small></small>
+                    </div>
+                    <div class="media-icons">
+                      <a href="#" class="popup-btn"
+                        ><i class="fa-solid fa-list-check"></i
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="content">
+                    <div class="img">
+                      <img src="/image/sandy.jpg" alt="" />
+                    </div>
+                    <div class="details">
+                      <div class="name">Soil Type</div>
+                      <div class="job">Coarse (Sandy)</div>
+                    </div>
+                    <div class="media-icons">
+                      <a href="#" class="popup-btn"
+                        ><i class="fa-solid fa-list-check"></i
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="cards">
+                <div class="card">
+                  <div class="content">
+                    <div class="img">
+                      <!---<img src="images/img4.jpg" alt="">--->
+                    </div>
+                    <div class="details">
+                      <div class="name">Appolo Reef</div>
+                      <div class="job">Web Designer</div>
+                    </div>
+                    <div class="media-icons">
+                      <a href="#" onclick="popup()"
+                        ><i class="fa-solid fa-list-check"></i
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="content">
+                    <div class="img">
+                      <!--<img src="images/img5.jpg" alt="">---->
+                    </div>
+                    <div class="details">
+                      <div class="name">Adrina Calvo</div>
+                      <div class="job">UI Designer</div>
+                    </div>
+                    <div class="media-icons">
+                      <a href="#" onclick="popup()"
+                        ><i class="fa-solid fa-list-check"></i
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="content">
+                    <div class="img">
+                      <!--<img src="images/img6.jpeg" alt="">--->
+                    </div>
+                    <div class="details">
+                      <div class="name">Nicole Lewis</div>
+                      <div class="job">Web Devloper</div>
+                    </div>
+                    <div class="media-icons">
+                      <a href="#" onclick="popup()"
+                        ><i class="fa-solid fa-list-check"></i
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Search in Guide -->
+          <section class="container2">
+            <section class="searchContainer">
+              <form action="">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input
+                  type="text"
+                  id="searchItem"
+                  onkeyup="searchNow()"
+                  placeholder="Seach your plant here"
+                />
+              </form>
+
+              <div class="productList" id="productList">
+                <div class="productSearch">
+                  <img src="/image/Fruits/APPLE.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Apple</h2>
+                    <h3>21%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Fruits/BLACKBERRY.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Grapes</h2>
+                    <h3>21%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Fruits/BLUEBERRY.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Fig</h2>
+                    <h3>21%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Fruits/CRANBERRY.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Pear</h2>
+                    <h3>21%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Fruits/PEACH.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Peach</h2>
+                    <h3>21%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Fruits/RASPBERRY.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Raspberry</h2>
+                    <h3>21%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Fruits/STRAWBERRY.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Strawberry</h2>
+                    <h3>21%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Fruits/BLACKBERRY.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Blackberry</h2>
+                    <h3>21%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Fruits/BLUEBERRY.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Blueberry</h2>
+                    <h3>41%v-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Fruits/CRANBERRY.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Cranberry</h2>
+                    <h3>61%v-80%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/ALPINE CURRANT.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Alphine Current</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/American Filbert.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>American Filbert</h2>
+                    <h3>21%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/american holly.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>American Holly</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/amur privet.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Amur Privet</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Arborvitae.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Arborvitae</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/American Filbert.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Azealeas</h2>
+                    <h3>21%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Bald Cypress.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Bald Cypress</h2>
+                    <h3>21%-80%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Barberry.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Barberry</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Bayberry.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Bayberry</h2>
+                    <h3>No certain amount of moisture level</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Birch tree.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Birch</h2>
+                    <h3>41%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Black Tupelo tree.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Black Tupelo</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Chinese Juniper tree.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Chinese Juniper</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Clematis.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Clematis</h2>
+                    <h3>21%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Common Boxwood tree.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Common Boxwood</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Common elderberry tree.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Common Elderberry</h2>
+                    <h3>41%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Common lilac.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Common Lilac</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Cotoneaster.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Cotoneaster</h2>
+                    <h3>No certain amount of moisture level</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Crab Apple.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Crab Apple</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Crape Myrtle.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Crape Myrtle</h2>
+                    <h3>21%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Dawn Redwood.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Dawn Redwood</h2>
+                    <h3>41%-80%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Dogwood.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Dogwood</h2>
+                    <h3>41%-80%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Eastern Red Cedar.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Eastern Red Cedar</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Elderberry.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Elderberry</h2>
+                    <h3>21%-80%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Elm.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Elm</h2>
+                    <h3>21%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Frazier Fir.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Frazier Fir</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Gardenia.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Gardenia</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Ginkgo.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Ginkgo</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Hawthorn.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Hawthron</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Holly tree.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Holly</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Honey Locust.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Honey Locust</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Horse Chestnut.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Horse Chestnut</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Hydragea.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Hydragea</h2>
+                    <h3>41%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Juniper.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Juniper</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Lilac.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Lilac</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Maple.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Maple General</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Mockorange.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Mockorange</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Oaks.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Oaks (General)</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Ohio Buckeye.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Ohio Buckeye</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Potentilla.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Pontentilla</h2>
+                    <h3>0%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Rugosa Rose.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Rugosa Rose</h2>
+                    <h3>0%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Saucer Magnolia.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Saucer Magnolia</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Serviceberry.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Serviceberry</h2>
+                    <h3>21%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Silvermaple.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Silver Maple</h2>
+                    <h3>21%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/ALPINE CURRANT.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Alphine Current</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/clay.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Sugar Maple</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Sweetshrub.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Sweetshrub</h2>
+                    <h3>21%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/Tamarac.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Tamarac/Larch</h2>
+                    <h3>41%-80%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/White Fir.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>White Fir</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Trees/White Pine.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>White Pine</h2>
+                    <h3>41%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Agave.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Agave</h2>
+                    <h3>0%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Aster.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Aster</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Flower/Astilbe.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Astilbe</h2>
+                    <h3>41%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Big Bluestem.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Big Blue Stem</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Bleeding Heart.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Bleeding Heart</h2>
+                    <h3>41%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Flower/Butterfly Weed.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Butterfly Weed</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/Flower/Cactus.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Cactus</h2>
+                    <h3>0%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Catmint.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Catmint</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Christmas Fern.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Christmas Fern</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Coneflower.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Cone Flower</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Daffodil.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Daffodil</h2>
+                    <h3>21%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Dalia.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Dalia</h2>
+                    <h3>21%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Daylilly.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Daylilly</h2>
+                    <h3>21%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Gailllardia.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Gaillardia</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Heaths.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Heaths/Heathers</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Hellebores.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Hellebores</h2>
+                    <h3>41%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Hosta.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Hosta</h2>
+                    <h3>21%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Hyssop.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Hyssop</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Iris.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Iris</h2>
+                    <h3>21%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Jack In Pulpits.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Jack In Pulpits</h2>
+                    <h3>41%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Joe-Pye Weed.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Joe-Pye Weed</h2>
+                    <h3>41%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Lavendar.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Lavendar</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Lemon Balm.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Lemon Balm</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Lily.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Lily</h2>
+                    <h3>21%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Lobellia.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Lobellia</h2>
+                    <h3>41%-80%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Lupine.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Lupine</h2>
+                    <h3>41%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Marigold.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Marigold</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Marsh Marigold.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Marish Marigold</h2>
+                    <h3>61%-80%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/May Apple.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>May Apple</h2>
+                    <h3>41%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Meadow Rue.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Meadow Rue</h2>
+                    <h3>61%-80%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Monarda.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Monarda</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Ornamental Grass.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Ornamental Grasses</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Penstemon.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Penstemon</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Peony.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Peony</h2>
+                    <h3>21%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Petunia.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Petunia</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/vagetables.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Vegetables</h2>
+                    <h3>41%-80%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Poppy (general).jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Poppy (General)</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Purple Coneflower.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Purple Coneflower</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Queen of the Prairie.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Queen of the Prairie</h2>
+                    <h3>41%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Red Milkweed.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Red Milkweed</h2>
+                    <h3>41%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Sedges.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Sedges</h2>
+                    <h3>21%-80%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Sedum.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Sedum</h2>
+                    <h3>0%-20%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Sod Turfgrass.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Sod/Turfgrass</h2>
+                    <h3>NO certain amount of moisture level</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Pansy.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Pansy</h2>
+                    <h3>21%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Tulip.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Tulip</h2>
+                    <h3>21%-60%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Yarrow.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Yarrow</h2>
+                    <h3>0%-20%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Yucca.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Yucca</h2>
+                    <h3>0%-20%</h3>
+                  </div>
+                </div>
+
+                <div class="productSearch">
+                  <img src="/image/flower/Zinnia.jpg" alt="" />
+                  <div class="pDetails">
+                    <h2>Zinnia</h2>
+                    <h3>21%-40%</h3>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </section>
+        </section>
+
+        <!-- sample -->
+        <section id="combination">
+          <div class="sampleContainer">
+            <div class="product">
+              <div class="popup-view">
+                <div class="popup-card">
+                  <a><i class="fas fa-times close-btn"></i></a>
+                  <div class="product-img">
+                    <img src="/image/clay.jpg" alt="" />
+                  </div>
+                  <div class="info">
+                    <h2 id="subok">Fine (Clay)<br /><span>Soil Type</span></h2>
+                    <p>
+                      Clay soil holds more water than other types of soil but is
+                      slow to absorb and release the moisture. It is not
+                      recommended to over-water or water faster than the clay
+                      can absorb. When wet, clay soil is sticky to the touch but
+                      feels smooth when dry. Due to its high water capacity, it
+                      is often considered a heavier soil, and can also take
+                      longer to warm up in the spring.
+                    </p>
+                    <span class="price"></span>
+                    <a href="#" class="add-cart-btn">I Understand</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="product">
+              <div class="popup-view">
+                <div class="popup-card">
+                  <a><i class="fas fa-times close-btn"></i></a>
+                  <div class="product-img">
+                    <img src="/image/loamy.jpg" alt="" />
+                  </div>
+                  <div class="info">
+                    <h2>Medium Loamy<br /><span>Soil type</span></h2>
+                    <p>
+                      Loam soil retains moisture well, making it the optimal
+                      soil type for thriving gardens and can be watered
+                      normally. Identify loam soil by its color and texture: it
+                      has a darker brown or black shade and is crumbly to the
+                      touch but still holds water well. Garden flowers and
+                      plants grow best in loam soil.
+                    </p>
+                    <span class="price"></span>
+                    <a href="#" class="add-cart-btn">I Understand</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="product">
+              <div class="popup-view">
+                <div class="popup-card">
+                  <a><i class="fas fa-times close-btn"></i></a>
+                  <div class="product-img">
+                    <img src="/image/sandy.jpg" alt="" />
+                  </div>
+                  <div class="info">
+                    <h2>Coarse (Sandy)<br /><span>Soil Type</span></h2>
+                    <p>
+                      Sandy soil drains quickly, so it requires slow watering to
+                      thoroughly saturate soil root zones. To distinguish sandy
+                      soil from other soil types, it is usually light brown in
+                      color with a gritty texture. Because of this porous
+                      characteristic, it is not ideal for seedlings as water
+                      drains away quickly.
+                    </p>
+                    <span class="price"></span>
+                    <a href="#" class="add-cart-btn">I Understand</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Popup Section-->
+
+        <div class="popup-container" id="pop">
+          <div class="popup-content">
+            <div class="left-side">
+              <div class="img">
+                <img id="myImg" src="/image/background.jpeg" alt="" />
+              </div>
+              <div class="image-overlay">
+                <i class="fa-solid fa-plus"></i>
+                <input
+                  type="file"
+                  id="picture"
+                  name="airon"
+                  onclick="clickMe()"
+                  accept="image/*"
+                />
+              </div>
+            </div>
+            <div class="right-side">
+              <div class="topic-text" id="selectedMoisture">
+                Soil Moisture 1
+              </div>
+
+              <form action="#">
+                <div class="input-box">
+                  <input
+                    type="text"
+                    placeholder="Enter the name of the plant"
+                    required
+                    id="holderPlantName"
+                  />
+                </div>
+
+                <div class="input-box">
+                  <input
+                    type="number"
+                    placeholder="Enter moisture level"
+                    required
+                    id="holderMoistureLevel"
+                    min="20"
+                    max="100"
+                  />
+                </div>
+
+                <div>
+                  <select
+                    aria-label="soilType"
+                    name="soilType"
+                    id="pickSoilType"
+                    required
+                  >
+                    <option value="" selected disabled>
+                      Choose your Soil Type
+                    </option>
+                    <option value="Clay">Fine (Clay)</option>
+                    <option value="Loamy">Medium (Loamy)</option>
+                    <option value="Sandy">Coarse (Sandy)</option>
+                  </select>
+                </div>
+
+                <div class="input-box message-box">
+                  <input
+                    type="text"
+                    placeholder="Enter plant description"
+                    id="holderDescription"
+                  />
+                </div>
+                <div class="button">
+                  <input type="submit" value="Save" onclick="uploadImage()" />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Settings Section -->
+        <section id="settingsSection">
+          <div class="settingsContainer" id="">
+            <div class="settingsContent">
+              <div class="left-side">
+                <div class="img">
+                  <img id="profilePicID" alt="" />
+                </div>
+                <div class="imageOverlay">
+                  <i class="fa-solid fa-plus"></i>
+                  <input
+                    type="file"
+                    id="pictureOverlay"
+                    name="prof"
+                    onclick="clickProfile()"
+                    accept="image/*"
+                  />
+                </div>
+              </div>
+
+              <div class="right-side">
+                <div class="topic-text" id="">Settings</div>
+
+                <form action="#">
+                  <div id="changeUsername">
+                    <div class="input-box">
+                      <input
+                        type="text"
+                        placeholder="Change Username"
+                        id="usernameSettings"
+                        title="Enter at least 8 characters"
+                        pattern=".{8,}"
+                        oninput="inputSettings()"
+                      />
+                    </div>
+                    <div class="input-box">
+                      <input
+                        type="password"
+                        placeholder="Enter Current Password"
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                        title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+                        id="passwordCurrent"
+                        oninput="inputSettings()"
+                      />
+                    </div>
+                  </div>
+
+                  <div id="or"><p>or</p></div>
+                  <div id="changePassword">
+                    <div class="input-box">
+                      <input
+                        type="password"
+                        placeholder="Enter Current Password"
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                        title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+                        id="changePassCurrent"
+                        oninput="inputSettings()"
+                      />
+                    </div>
+
+                    <div class="input-box">
+                      <input
+                        type="password"
+                        placeholder="Change Password"
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                        title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+                        id="changePass"
+                        oninput="inputSettings()"
+                      />
+                    </div>
+
+                    <div class="input-box">
+                      <input
+                        type="password"
+                        placeholder="Confirm Password"
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                        title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+                        id="changePassConfirm"
+                        oninput="inputSettings()"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <a
+                      href="#"
+                      class="text"
+                      id="forgotPass"
+                      onclick="forgotPass()"
+                      >Forgot password?</a
+                    >
+                  </div>
+                  <div class="button">
+                    <input
+                      type="submit"
+                      value="Save"
+                      onclick="uploadProfilePic()"
+                    />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Yung mga kailangan na script para gumana yung Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-messaging.js"></script>
+    <!-- Eto para gumana yung graph -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js"></script>
+
+    <!-- Para mabasa yung index.js tsaka login.js -->
+    <script src="/js/index.js"></script>
+
+    <!-- Eto para gawin yung graph -->
+    <script></script>
+  </body>
+</html>

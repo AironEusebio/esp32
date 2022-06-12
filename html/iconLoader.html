@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Oasis</title>
+    <link rel="stylesheet" href="/style/iconLoader.css" />
+    <link rel="icon" type="image/x-icon" href="/image/oasislogo.png" />
+  </head>
+  <body>
+    <div class="container">
+      <span class="text first-text">Use</span>
+      <span class="text sec-text">Oasis</span>
+    </div>
+
+    <script>
+      const text = document.querySelector(".sec-text");
+
+      const textLoad = () => {
+        setTimeout(() => {
+          text.textContent = "Oasis";
+        }, 0); //1s = 1000 milliseconds
+      };
+
+      textLoad();
+      setInterval(textLoad, 12000);
+    </script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-storage.js"></script>
+    <script src="/js/index.js"></script>
+  </body>
+</html>

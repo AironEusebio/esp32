@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | Oasis</title>
+    <link rel="stylesheet" href="/style/login.css" />
+    <link rel="stylesheet" href="/style/toast.css" />
+    <link rel="icon" type="image/x-icon" href="/image/oasislogo.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
+      integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="toast">
+      <div class="toast-content">
+        <i id="iconToast" class="fas fa-solid fa-check check"></i>
+
+        <div class="message">
+          <span class="text text-1" id="firstMessage">Success</span>
+          <span class="text text-2" id="secondMessage"
+            >Your changes has been saved</span
+          >
+        </div>
+      </div>
+      <i class="fa-solid fa-xmark close"></i>
+
+      <div id="toastBox" class="progress"></div>
+    </div>
+    <div class="containerStart">
+      <div class="forms">
+        <div class="form login">
+          <span class="title">Login</span>
+
+          <form id="validationLogin" action="#">
+            <div class="input-field">
+              <input
+                id="validationUsername"
+                type="text"
+                placeholder="Enter your email"
+                required
+              />
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div class="input-field">
+              <input
+                id="validationPassword"
+                type="password"
+                placeholder="Enter your password"
+                required
+              />
+              <i class="fa-solid fa-lock"></i>
+            </div>
+
+            <div class="checkbox-text">
+              <a href="#" onclick="forgotPass1()" class="text"
+                >Forgot password?</a
+              >
+            </div>
+
+            <div class="input-field button">
+              <input type="submit" value="Login Now" onclick="login()" />
+            </div>
+          </form>
+
+          <div class="login-signup">
+            <span class="text"
+              >Don't have an account?
+              <a href="#" class="text signup-link">Signup now</a>
+            </span>
+          </div>
+        </div>
+
+        <!-- Registration Form -->
+        <div class="form signup">
+          <span class="title">Registration</span>
+
+          <form id="validationSignUp" action="#">
+            <div class="input-field">
+              <input
+                type="text"
+                placeholder="Enter Oasis code"
+                required
+                id="registerCode"
+              />
+              <i class="fa-solid fa-link"></i>
+            </div>
+            <div class="input-field">
+              <input
+                type="text"
+                placeholder="Enter your username"
+                required
+                pattern=".{8,}"
+                title="Eight or more characters"
+                id="registerUsername"
+              />
+              <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div class="input-field">
+              <input
+                type="text"
+                placeholder="Enter your email"
+                required
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                title="Invalid Email"
+                id="registerEmail"
+              />
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+
+            <div class="input-field">
+              <input
+                type="password"
+                placeholder="Confirm a password"
+                required
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+                id="registerPassword"
+              />
+              <i class="fa-solid fa-lock"></i>
+            </div>
+
+            <div class="input-field button">
+              <input type="submit" value="Signup Now" onclick="register()" />
+            </div>
+          </form>
+
+          <div class="login-signup">
+            <span class="text"
+              >Already have an account?
+              <a href="#" class="text login-link active">Login now</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-storage.js"></script>
+    <script src="/js/login.js"></script>
+    <script src="/js/index.js"></script>
+  </body>
+</html>
